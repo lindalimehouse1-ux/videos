@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Video Hub | Linda Limehouse — AI Certified REALTOR®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0C2340;
+    --blue: #185FA5;
+    --blue-mid: #378ADD;
+    --gold: #C8961E;
+    --gold-light: #F5D78E;
+    --cream: #FAF8F4;
+    --white: #ffffff;
+    --gray-50: #F7F6F3;
+    --gray-100: #EDEBE6;
+    --gray-300: #C4C1B8;
+    --gray-500: #8A877F;
+    --gray-700: #4A4843;
+    --gray-900: #1C1B19;
+    --red: #C0392B;
+    --cat-buyers: #185FA5;
+    --cat-sellers: #0F6E56;
+    --cat-community: #BA7517;
+    --cat-luxury: #8B3A6B;
+    --cat-market: #3B6D11;
+    --cat-shorts: #C0392B;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --transition: 0.2s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--gray-900);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 400px; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(24,95,165,0.25) 100%);
+    pointer-events: none;
+  }
+
+  .hero-accent-2 {
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 40px solid rgba(200,150,30,0.08);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-left {}
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(200,150,30,0.15);
+    border: 1px solid rgba(200,150,30,0.3);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-badge svg {
+    width: 10px; height: 10px;
+    fill: var(--gold-light);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero h1 span { color: var(--gold-light); }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .hero-cta svg { width: 14px; height: 14px; fill: var(--navy); }
+
+  /* ── BUTTON ── */
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .btn-primary:hover { background: var(--navy); transform: translateY(-1px); }
+
+  /* ── STATS ── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 0.65rem 2rem;
+    display: none;
+  }
+
+  .stats-bar-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .stat-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .stat-item strong {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  /* ── TABS ── */
+  .tabs-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tabs-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs-inner::-webkit-scrollbar { display: none; }
+
+  .tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray-500);
+    cursor: pointer;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    background: none;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: color var(--transition), border-color var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .tab .tab-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity var(--transition);
+    flex-shrink: 0;
+  }
+
+  .tab.active .tab-dot { opacity: 1; }
+
+  .tab.active {
+    color: var(--navy);
+    font-weight: 500;
+    border-bottom-color: var(--navy);
+  }
+
+  .tab:hover:not(.active) { color: var(--gray-700); }
+
+  .tab-count {
+    font-size: 10px;
+    background: var(--gray-100);
+    color: var(--gray-500);
+    padding: 2px 6px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .tab.active .tab-count {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ── STATE BOXES ── */
+  .state-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    margin: 0 auto;
+    max-width: 520px;
+  }
+
+  .state-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  .state-icon svg { width: 22px; height: 22px; fill: var(--gray-500); }
+
+  .state-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+
+  .state-box p {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+
+  .loading-spinner {
+    width: 32px; height: 32px;
+    border: 2.5px solid var(--gray-100);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── CATEGORY SECTION ── */
+  .cat-section { margin-bottom: 2.5rem; }
+
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .cat-stripe {
+    width: 4px;
+    height: 22px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+
+  .cat-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  /* ── VIDEO GRID ── */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  .video-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .video-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: var(--gray-300);
+  }
+
+  .thumb-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--gray-100);
+    overflow: hidden;
+  }
+
+  .thumb-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover .thumb-wrap img { transform: scale(1.04); }
+
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(12,35,64,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .video-card:hover .play-overlay { opacity: 1; }
+
+  .play-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .play-circle svg { width: 16px; height: 16px; fill: var(--blue); margin-left: 3px; }
+
+  .duration-tag {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .new-tag {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .video-info { padding: 12px 14px 14px; }
+
+  .video-title {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--gray-900);
+    margin-bottom: 7px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .video-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--gray-500);
+  }
+
+  /* ── SHORTS ── */
+  .shorts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+  }
+
+  .short-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform var(--transition);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .short-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .short-thumb {
+    position: relative;
+    aspect-ratio: 9/16;
+    background: var(--gray-100);
+    overflow: hidden;
+  }
+
+  .short-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .short-card:hover .short-thumb img { transform: scale(1.04); }
+
+  .shorts-badge {
+    position: absolute;
+    top: 7px; left: 7px;
+    background: var(--red);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .short-info { padding: 9px 11px 11px; }
+
+  .short-title {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--gray-900);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .short-date {
+    font-size: 10px;
+    color: var(--gray-500);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    height: 1px;
+    background: var(--gray-100);
+    margin: 0.5rem 0 2.5rem;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 340px;
+    font-size: 13px;
+    padding: 9px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--gray-900);
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color var(--transition);
+  }
+
+  .search-input:focus { outline: none; border-color: var(--blue); }
+
+  .result-count {
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--gray-500);
+    border-top: 1px solid var(--gray-100);
+    margin-top: 2rem;
+  }
+
+  .page-footer a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero-inner { padding: 2rem 1.25rem 1.75rem; }
+    .main { padding: 1.25rem; }
+    .tabs-inner { padding: 0 1.25rem; }
+    .tab { padding: 12px 14px; font-size: 12px; }
+    .videos-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .shorts-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-accent-2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+        Video Resource Library
+      </div>
+      <h1>Watch. Learn. <span>Buy or Sell</span><br>with Confidence.</h1>
+      <p class="hero-sub">Linda Limehouse · AI-Certified REALTOR® · Aiken · North Augusta · Augusta</p>
+    </div>
+    <a class="hero-cta" href="https://calendar.app.google/igiuYwqR6ENBMn5g7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16"><path d="M13 2h-1V1h-2v1H6V1H4v1H3C2.45 2 2 2.45 2 3v11c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H3V5h10v9zM5 7H7V9H5z"/></svg>
+      Book a Free Consultation
+    </a>
+  </div>
+</header>
+
+<!-- API KEY: Paste your YouTube Data API v3 key in the JS below (see YOUTUBE_API_KEY) -->
+
+<!-- STATS BAR -->
+<div class="stats-bar" id="statsBar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">Total: <strong id="statTotal">—</strong></div>
+    <div class="stat-item">Long-form: <strong id="statLong">—</strong></div>
+    <div class="stat-item">Shorts: <strong id="statShorts">—</strong></div>
+    <div class="stat-item">Updated: <strong id="statTime">—</strong></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<nav class="tabs-wrap">
+  <div class="tabs-inner">
+    <button class="tab active" onclick="showTab('all')" id="tab-all">
+      <span class="tab-dot" style="background:var(--navy)"></span>
+      All Videos <span class="tab-count" id="cnt-all">0</span>
+    </button>
+    <button class="tab" onclick="showTab('buyers')" id="tab-buyers">
+      <span class="tab-dot" style="background:var(--cat-buyers)"></span>
+      Buyer Tips <span class="tab-count" id="cnt-buyers">0</span>
+    </button>
+    <button class="tab" onclick="showTab('sellers')" id="tab-sellers">
+      <span class="tab-dot" style="background:var(--cat-sellers)"></span>
+      Seller Tips <span class="tab-count" id="cnt-sellers">0</span>
+    </button>
+    <button class="tab" onclick="showTab('community')" id="tab-community">
+      <span class="tab-dot" style="background:var(--cat-community)"></span>
+      Communities <span class="tab-count" id="cnt-community">0</span>
+    </button>
+    <button class="tab" onclick="showTab('luxury')" id="tab-luxury">
+      <span class="tab-dot" style="background:var(--cat-luxury)"></span>
+      Luxury &amp; Horse <span class="tab-count" id="cnt-luxury">0</span>
+    </button>
+    <button class="tab" onclick="showTab('market')" id="tab-market">
+      <span class="tab-dot" style="background:var(--cat-market)"></span>
+      Market Insights <span class="tab-count" id="cnt-market">0</span>
+    </button>
+    <button class="tab" onclick="showTab('shorts')" id="tab-shorts">
+      <span class="tab-dot" style="background:var(--cat-shorts)"></span>
+      Shorts <span class="tab-count" id="cnt-shorts">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="mainContent">
+  <div style="display:flex;justify-content:center;margin-top:2rem;">
+    <div class="state-box">
+      <div class="state-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 3H3C2 3 1 4 1 5v14c0 1 1 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zm-9 10l-5-3 5-3v6z"/></svg>
+      </div>
+      <h3>Your Video Hub is Ready</h3>
+      <p>Paste your YouTube Data API v3 key above and click <strong>Load Videos</strong>.<br>All your videos will load automatically, sorted by category.</p>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <p>Linda Limehouse · Meybohm Real Estate · <a href="https://www.firstaiagent.com" target="_blank">firstaiagent.com</a> · <a href="tel:+18032781800">(803) 278-1800</a></p>
+  <p style="margin-top:4px;">Licensed in Aiken SC · North Augusta SC · Augusta GA &nbsp;|&nbsp; First AI-Certified REALTOR® in the CSRA</p>
+</footer>
+
+<script>
+// ↓↓↓ PASTE YOUR YOUTUBE DATA API v3 KEY BETWEEN THE QUOTES BELOW ↓↓↓
+const YOUTUBE_API_KEY = 'AIzaSyAGAEodR0RkDFzumxjVKGUKoW90aj2r8y4';
+// ↑↑↑ ─────────────────────────────────────────────────────────────── ↑↑↑
+
+const CHANNEL_ID = 'UCYL7Y8BrPV1x3fkUsTxdLVw';
+let allVideos = [], longForm = [], shorts = [], currentTab = 'all';
+
+const CATEGORIES = {
+  buyers: {
+    label: 'Buyer Tips',
+    color: 'var(--cat-buyers)',
+    keywords: ['buyer','buying','first home','first-time','first time','purchase','mortgage','down payment','offer','inspection','pre-approval','loan','lender','closing cost']
+  },
+  sellers: {
+    label: 'Seller Tips',
+    color: 'var(--cat-sellers)',
+    keywords: ['sell','seller','selling','listing','staging','price','pricing','market value','just listed','open house','home value','equity','concession','repairs','curb appeal']
+  },
+  community: {
+    label: 'Communities & Neighborhoods',
+    color: 'var(--cat-community)',
+    keywords: ['aiken','north augusta','augusta','neighborhood','community','area','living in','moving to','tour','csra','south carolina','georgia','graniteville','warrenville','grovetown','evans','martinez','beech island','edgefield']
+  },
+  luxury: {
+    label: 'Luxury & Horse Properties',
+    color: 'var(--cat-luxury)',
+    keywords: ['luxury','horse','equestrian','estate','acreage','barn','farm','million','high-end','upscale','ranch','gated','pool','custom','waterfront','golf course']
+  },
+  market: {
+    label: 'Market Insights',
+    color: 'var(--cat-market)',
+    keywords: ['market','trend','interest rate','inventory','data','forecast','update','report','stats','statistics','economic','ai','artificial intelligence','technology','tips','advice','real estate','realtor','agent','2024','2025','2026']
+  }
+};
+
+function categorize(title, desc) {
+  const text = (title + ' ' + (desc || '')).toLowerCase();
+  for (const [k, c] of Object.entries(CATEGORIES)) {
+    if (c.keywords.some(kw => text.includes(kw))) return k;
+  }
+  return 'market';
+}
+
+function isShort(video) {
+  if (!video.duration) return false;
+  const m = video.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return false;
+  const h = parseInt(m[1]||0), min = parseInt(m[2]||0), s = parseInt(m[3]||0);
+  return h * 3600 + min * 60 + s <= 60;
+}
+
+function fmtDuration(iso) {
+  if (!iso) return '';
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return '';
+  const h = parseInt(m[1]||0), min = parseInt(m[2]||0), s = parseInt(m[3]||0);
+  if (h > 0) return h + ':' + String(min).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  return min + ':' + String(s).padStart(2,'0');
+}
+
+function fmtViews(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toString();
+}
+
+function timeAgo(dateStr) {
+  const diff = (Date.now() - new Date(dateStr)) / 1000;
+  if (diff < 86400 * 3) return 'New';
+  if (diff < 604800) return Math.floor(diff/86400) + 'd ago';
+  if (diff < 2592000) return Math.floor(diff/604800) + 'w ago';
+  if (diff < 31536000) return Math.floor(diff/2592000) + 'mo ago';
+  return Math.floor(diff/31536000) + 'yr ago';
+}
+
+function isNew(dateStr) {
+  return (Date.now() - new Date(dateStr)) / 1000 < 86400 * 14;
+}
+
+async function loadVideos() {
+  const key = YOUTUBE_API_KEY;
+  if (!key || key === 'PASTE_YOUR_API_KEY_HERE') {
+    document.getElementById('mainContent').innerHTML = `
+      <div style="display:flex;justify-content:center;margin-top:2rem;">
+        <div class="state-box">
+          <div class="state-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+          <h3>API Key Missing</h3>
+          <p>Open the HTML file and paste your YouTube API key into the <strong>YOUTUBE_API_KEY</strong> variable at the top of the script.</p>
+        </div>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('mainContent').innerHTML = `
+    <div style="display:flex;justify-content:center;margin-top:2rem;">
+      <div class="state-box">
+        <div class="loading-spinner"></div>
+        <h3>Fetching your videos…</h3>
+        <p>Pulling from your YouTube channel and sorting by category.</p>
+      </div>
+    </div>`;
+
+  try {
+    let videoIds = [], pageToken = '', pages = 0;
+    while (pages < 6) {
+      const url = `https://www.googleapis.com/youtube/v3/search?part=id&channelId=${CHANNEL_ID}&type=video&maxResults=50&order=date${pageToken ? '&pageToken='+pageToken : ''}&key=${key}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      data.items.forEach(i => videoIds.push(i.id.videoId));
+      pageToken = data.nextPageToken || '';
+      pages++;
+      if (!pageToken) break;
+    }
+
+    allVideos = [];
+    for (let i = 0; i < videoIds.length; i += 50) {
+      const chunk = videoIds.slice(i, i+50).join(',');
+      const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${chunk}&key=${key}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      data.items.forEach(v => {
+        allVideos.push({
+          id: v.id,
+          title: v.snippet.title,
+          description: v.snippet.description,
+          thumb: v.snippet.thumbnails?.medium?.url || v.snippet.thumbnails?.default?.url || '',
+          publishedAt: v.snippet.publishedAt,
+          duration: v.contentDetails?.duration || '',
+          views: parseInt(v.statistics?.viewCount || 0),
+          category: categorize(v.snippet.title, v.snippet.description),
+          short: isShort({duration: v.contentDetails?.duration || ''})
+        });
+      });
+    }
+
+    shorts = allVideos.filter(v => v.short);
+    longForm = allVideos.filter(v => !v.short);
+
+    // update tab counts
+    const cats = ['buyers','sellers','community','luxury','market'];
+    document.getElementById('cnt-all').textContent = longForm.length;
+    cats.forEach(c => {
+      document.getElementById('cnt-'+c).textContent = longForm.filter(v => v.category === c).length;
+    });
+    document.getElementById('cnt-shorts').textContent = shorts.length;
+
+    // stats bar
+    const sb = document.getElementById('statsBar');
+    sb.style.display = 'block';
+    document.getElementById('statTotal').textContent = allVideos.length;
+    document.getElementById('statLong').textContent = longForm.length;
+    document.getElementById('statShorts').textContent = shorts.length;
+    document.getElementById('statTime').textContent = new Date().toLocaleTimeString();
+
+    renderTab(currentTab);
+
+  } catch(e) {
+    document.getElementById('mainContent').innerHTML = `
+      <div style="display:flex;justify-content:center;margin-top:2rem;">
+        <div class="state-box">
+          <div class="state-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+          <h3>Could not load videos</h3>
+          <p>${e.message}<br><br>Make sure your API key is correct and YouTube Data API v3 is enabled in Google Cloud Console.</p>
+        </div>
+      </div>`;
+  }
+}
+
+function showTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if (allVideos.length) renderTab(tab);
+}
+
+function renderTab(tab) {
+  const wrap = document.getElementById('mainContent');
+
+  if (tab === 'shorts') {
+    if (!shorts.length) {
+      wrap.innerHTML = emptyState('No Shorts yet', 'Videos 60 seconds or under will appear here automatically.');
+      return;
+    }
+    wrap.innerHTML = `<div class="cat-section">
+      <div class="cat-header">
+        <div class="cat-stripe" style="background:var(--cat-shorts)"></div>
+        <span class="cat-title">YouTube Shorts</span>
+        <span class="cat-pill" style="background:#FEE8E7;color:var(--red)">${shorts.length} short${shorts.length!==1?'s':''}</span>
+      </div>
+      <div class="shorts-grid">${shorts.map(shortCard).join('')}</div>
+    </div>`;
+    return;
+  }
+
+  if (tab === 'all') {
+    let html = '';
+    const cats = Object.entries(CATEGORIES);
+    cats.forEach(([key, cat], idx) => {
+      const vids = longForm.filter(v => v.category === key);
+      if (!vids.length) return;
+      if (idx > 0) html += '<div class="section-divider"></div>';
+      html += catSection(key, cat, vids);
+    });
+    if (!html) html = emptyState('No videos found', 'Load your channel above to see videos appear here.');
+    wrap.innerHTML = html;
+    return;
+  }
+
+  const cat = CATEGORIES[tab];
+  const vids = longForm.filter(v => v.category === tab);
+  if (!vids.length) {
+    wrap.innerHTML = emptyState('No videos in this category yet', 'New videos are automatically sorted here as you upload them to YouTube.');
+    return;
+  }
+  wrap.innerHTML = catSection(tab, cat, vids);
+}
+
+function catSection(key, cat, vids) {
+  const bg = cat.color.replace('var(--cat-','').replace(')','');
+  const pillColors = {
+    buyers:'#E8F1FB;color:#185FA5',
+    sellers:'#E8F5F1;color:#0F6E56',
+    community:'#FDF3E3;color:#BA7517',
+    luxury:'#F7EEF4;color:#8B3A6B',
+    market:'#EEF5E8;color:#3B6D11'
+  };
+  const pc = pillColors[key] || '##F0F0F0;color:#666';
+  return `<div class="cat-section">
+    <div class="cat-header">
+      <div class="cat-stripe" style="background:${cat.color}"></div>
+      <span class="cat-title">${cat.label}</span>
+      <span class="cat-pill" style="background:${pc}">${vids.length} video${vids.length!==1?'s':''}</span>
+    </div>
+    <div class="videos-grid">${vids.map(videoCard).join('')}</div>
+  </div>`;
+}
+
+function videoCard(v) {
+  const dur = fmtDuration(v.duration);
+  const ago = timeAgo(v.publishedAt);
+  const views = fmtViews(v.views);
+  const url = `https://www.youtube.com/watch?v=${v.id}`;
+  return `<a class="video-card" href="${url}" target="_blank" rel="noopener">
+    <div class="thumb-wrap">
+      <img src="${v.thumb}" alt="${v.title.replace(/"/g,'&quot;')}" loading="lazy" />
+      <div class="play-overlay">
+        <div class="play-circle"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div>
+      </div>
+      ${dur ? `<span class="duration-tag">${dur}</span>` : ''}
+      ${isNew(v.publishedAt) ? `<span class="new-tag">New</span>` : ''}
+    </div>
+    <div class="video-info">
+      <div class="video-title">${v.title}</div>
+      <div class="video-meta"><span>${ago}</span><span>${views} views</span></div>
+    </div>
+  </a>`;
+}
+
+function shortCard(v) {
+  const url = `https://www.youtube.com/shorts/${v.id}`;
+  const ago = timeAgo(v.publishedAt);
+  return `<a class="short-card" href="${url}" target="_blank" rel="noopener">
+    <div class="short-thumb">
+      <img src="${v.thumb}" alt="${v.title.replace(/"/g,'&quot;')}" loading="lazy" />
+      <div class="play-overlay">
+        <div class="play-circle" style="width:34px;height:34px">
+          <svg viewBox="0 0 12 14" width="13" height="13"><polygon points="0,0 12,7 0,14" fill="var(--blue)"/></svg>
+        </div>
+      </div>
+      <span class="shorts-badge">Short</span>
+    </div>
+    <div class="short-info">
+      <div class="short-title">${v.title}</div>
+      <div class="short-date">${ago}</div>
+    </div>
+  </a>`;
+}
+
+// Auto-load videos when page opens
+window.addEventListener('DOMContentLoaded', loadVideos);
+
+function emptyState(title, msg) {
+  return `<div style="display:flex;justify-content:center;margin-top:2rem;">
+    <div class="state-box">
+      <div class="state-icon"><svg viewBox="0 0 24 24"><path d="M21 3H3C2 3 1 4 1 5v14c0 1 1 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zm-9 10l-5-3 5-3v6z"/></svg></div>
+      <h3>${title}</h3><p>${msg}</p>
+    </div>
+  </div>`;
+}
+</script>
+
+</body>
+</html>
